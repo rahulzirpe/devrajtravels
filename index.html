@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devraj Travels | Premium Journeys</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap');
+
+        :root {
+            --bg-color: #050505;
+            --surface-color: rgba(255, 255, 255, 0.05);
+            --primary: #FF4500; /* Vibrant Neon Orange */
+            --secondary: #7000FF; /* Electric Purple */
+            --text-main: #FFFFFF;
+            --text-muted: #A0AEC0;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(255, 69, 0, 0.15), transparent 25%);
+            background-attachment: fixed;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: var(--surface-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+        }
+
+        /* Navbar */
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .lang-btn {
+            background: linear-gradient(45deg, var(--primary), #ff7300);
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 69, 0, 0.3);
+        }
+
+        .lang-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 69, 0, 0.5);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 80vw;
+            height: 80vw;
+            background: radial-gradient(circle, rgba(255,69,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            animation: pulse 8s infinite alternate;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: slideUp 1s ease-out;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(45deg, var(--secondary), var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-muted);
+            max-width: 850px;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+            animation: slideUp 1s ease-out 0.2s backwards;
+        }
+
+        /* Linear Data Stats Bar */
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: var(--surface-color);
+            padding: 1rem 3rem;
+            border-radius: 50px;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+            animation: slideUp 1s ease-out 0.4s backwards;
+        }
+
+        .hero-stats div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+
+        .hero-stats i {
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        /* Founder Section */
+        .founder-section {
+            padding: 6rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .founder-image-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .founder-image-wrapper::before {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            border-radius: 20px;
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0.7;
+            animation: pulse 4s infinite alternate;
+        }
+
+        .founder-img {
+            width: 100%;
+            border-radius: 20px;
+            border: 2px solid var(--glass-border);
+            display: block;
+        }
+
+        /* New Nameplate Styling */
+        .founder-nameplate {
+            text-align: center; 
+            margin-top: 1.5rem; 
+            background: rgba(0, 0, 0, 0.6); 
+            padding: 1rem; 
+            border-radius: 12px; 
+            border: 1px solid var(--glass-border); 
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .founder-text {
+            flex: 1;
+            min-width: 300px;
+            max-width: 600px;
+        }
+
+        .section-tag {
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .founder-text h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .founder-text p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Fleet Layout (Static & Uniform Sizing) */
+        .section-padding {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .fleet-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .fleet-row {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            padding: 2rem;
+            transition: all 0.4s ease;
+        }
+
+        .fleet-row:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        /* LEFT SIDE: UNIFORM IMAGE CONTAINER */
+        .fleet-image {
+            flex: 0 0 450px; /* Locks the width */
+            height: 300px;   /* Locks the height */
+            border-radius: 15px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--glass-border);
+            background-color: #111; /* Dark background if image takes a second to load */
+        }
+
+        .fleet-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* THIS IS THE MAGIC: Forces all images to fit perfectly without stretching */
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .fleet-row:hover .fleet-image img {
+            transform: scale(1.05);
+        }
+
+        /* RIGHT SIDE: DETAILS */
+        .fleet-details {
+            flex: 1;
+        }
+
+        .fleet-details h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .fleet-details h3 span {
+            color: var(--primary);
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .feature-list li {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-list i {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            background: rgba(112, 0, 255, 0.2);
+            padding: 10px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Bottom Comprehensive Services Grid */
+        .bottom-services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            padding: 2.5rem;
+            text-align: left;
+        }
+        
+        .service-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 1rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+        }
+
+        .service-card ul li {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .service-card ul li i {
+            color: var(--secondary);
+            margin-top: 4px;
+        }
+
+        /* Glowing WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 70px;
+            height: 70px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 35px;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 0 20px rgba(37, 211, 102, 0.5);
+            animation: bounce 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            animation: none;
+        }
+
+        /* Animations */
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.8; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        /* Language Toggle Utility */
+        .mr { display: none; }
+
+        /* Perfect Mobile Optimization */
+        @media (max-width: 900px) {
+            .fleet-row {
+                flex-direction: column;
+                text-align: left;
+                gap: 1.5rem;
+                padding: 1.5rem;
+            }
+            .fleet-image { 
+                flex: none; 
+                width: 100%; 
+                height: 250px; 
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero-stats { padding: 1rem 1.5rem; flex-direction: column; gap: 1rem; }
+            .founder-section { padding: 4rem 20px; }
+            .whatsapp-float { width: 60px; height: 60px; bottom: 20px; right: 20px; font-size: 30px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <span class="en">Devraj Travels</span>
+            <span class="mr">देवराज ट्रॅव्हल्स</span>
+        </div>
+        <button class="lang-btn" onclick="toggleLanguage()">
+            <span class="en">मराठी <i class="fas fa-language"></i></span>
+            <span class="mr">English <i class="fas fa-language"></i></span>
+        </button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1 class="en">Next-Generation <span>Travel Experience</span></h1>
+        <h1 class="mr">पुढच्या पिढीचा <span>प्रवासाचा अनुभव</span></h1>
+        
+        <!-- EXPANDED HERO TEXT HERE -->
+        <p class="en">Elevate your journey with Pune's most premium fleet. Whether you need seamless corporate transit, grand wedding logistics, or relaxing outstation tours, we deliver uncompromising luxury, absolute safety, and striking comfort. Experience reliable, professional transport services perfectly tailored to your every need.</p>
+        <p class="mr">पुण्यातील सर्वात उत्कृष्ट वाहनांसोबत तुमचा प्रवास सुखकर करा. तुम्हाला कॉर्पोरेट प्रवासाची, लग्नाच्या भव्य वाहतुकीची किंवा बाहेरगावच्या आरामदायी सहलींची गरज असो, आम्ही तडजोड नसलेली लक्झरी, पूर्ण सुरक्षितता आणि आराम देतो. तुमच्या प्रत्येक गरजेनुसार खात्रीशीर आणि व्यावसायिक प्रवासी सेवांचा अनुभव घ्या.</p>
+        
+        <!-- Linear Data Stats Bar -->
+        <div class="hero-stats">
+            <div>
+                <i class="fas fa-award"></i>
+                <span class="en">15+ Years Experience</span>
+                <span class="mr">१५+ वर्षांचा अनुभव</span>
+            </div>
+            <div>
+                <i class="fas fa-bus-alt"></i>
+                <span class="en">Modern Fleet</span>
+                <span class="mr">आधुनिक वाहने</span>
+            </div>
+            <div>
+                <i class="fas fa-smile-beam"></i>
+                <span class="en">10,000+ Happy Customers</span>
+                <span class="mr">१०,०००+ समाधानी ग्राहक</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Section (With your Local Image and New Nameplate) -->
+    <section class="founder-section">
+        <div class="founder-image-wrapper">
+            <!-- Ensure this image is in the same folder as your HTML file -->
+            <img src="owner.jpg" alt="Founder of Devraj Travels" class="founder-img">
+            
+            <!-- NEW NAMEPLATE ADDED HERE -->
+            <div class="founder-nameplate">
+                <h3 class="en" style="color: var(--text-main); font-size: 1.6rem; letter-spacing: 1px; margin: 0;">Mr. Eknath Suryavanshi Sir</h3>
+                <h3 class="mr" style="color: var(--text-main); font-size: 1.6rem; letter-spacing: 1px; margin: 0;">श्री. एकनाथ सूर्यवंशी सर</h3>
+                
+                <p class="en" style="color: var(--primary); font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">Founder & Owner</p>
+                <p class="mr" style="color: var(--primary); font-size: 0.9rem; margin-top: 5px; text-transform: uppercase; letter-spacing: 2px; font-weight: 600;">संस्थापक आणि मालक</p>
+            </div>
+        </div>
+        
+        <div class="founder-text">
+            <span class="section-tag en">The Visionary</span>
+            <span class="section-tag mr">आमचे मार्गदर्शक</span>
+            
+            <h2 class="en">15 Years of Excellence</h2>
+            <h2 class="mr">उत्कृष्टतेची १५ वर्षे</h2>
+            
+            <p class="en">With 15 years of rich experience in the travel industry, our founder has built Devraj Travels into a highly trusted name. Our success is driven by one simple philosophy: delivering an exceptionally nice service that keeps our customers smiling.</p>
+            <p class="mr">प्रवासी सेवेच्या क्षेत्रातील १५ वर्षांच्या प्रदीर्घ अनुभवासह, आमच्या संस्थापकांनी देवराज ट्रॅव्हल्सला एक अत्यंत विश्वासार्ह नाव बनवले आहे. आमचे यश एका सोप्या तत्त्वावर आधारित आहे: ग्राहकांना आनंद देणारी अत्यंत उत्तम सेवा प्रदान करणे.</p>
+            
+            <p class="en">We take massive pride in our fleet and our team. From the moment you book with us to the moment you reach your destination, we guarantee comfort, safety, and a premium experience. Happy customers are our biggest achievement.</p>
+            <p class="mr">आम्हाला आमच्या वाहनांचा आणि टीमचा खूप अभिमान आहे. तुम्ही बुकिंग केल्यापासून ते तुमच्या मुक्कामापर्यंत, आम्ही आराम, सुरक्षितता आणि प्रीमियम अनुभवाची हमी देतो. समाधानी ग्राहक हीच आमची सर्वात मोठी कमाई आहे.</p>
+        </div>
+    </section>
+
+    <!-- STATIC FLEET LAYOUT (Change images in the src tags below) -->
+    <section class="section-padding">
+        <h2 class="section-title en">Our Massive Fleet</h2>
+        <h2 class="section-title mr">आमची भव्य वाहने</h2>
+        
+        <div class="fleet-container">
+            
+            <!-- 9 & 10 SEATER START -->
+            <div class="glass fleet-row">
+                <div class="fleet-image">
+                    <img src="nineten.jpeg" alt="9 and 10 Seater">
+                </div>
+                <div class="fleet-details">
+                    <h3 class="en"><span>9 & 10</span> Seater Vehicles</h3>
+                    <h3 class="mr"><span>९ आणि १०</span> सीटर वाहने</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-snowflake"></i> <span class="en">AC & Non-AC variants available based on your preference.</span><span class="mr">तुमच्या पसंतीनुसार एसी (A/C) आणि नॉन-एसी (Non-A/C) पर्याय उपलब्ध.</span></li>
+                        <li><i class="fas fa-couch"></i> <span class="en">Ultimate comfort with plush pushback seats and ample legroom.</span><span class="mr">आरामदायी पुशबॅक सीट्स आणि प्रशस्त लेगरूमसह अत्यंत आरामदायी प्रवास.</span></li>
+                        <li><i class="fas fa-user-tie"></i> <span class="en">Driven by highly professional, verified, and experienced drivers.</span><span class="mr">अत्यंत व्यावसायिक, पडताळणी केलेले आणि अनुभवी चालक.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 9 & 10 SEATER END -->
+
+            <!-- 13 SEATER START -->
+            <div class="glass fleet-row">
+                <div class="fleet-image">
+                    <img src="thirteen.jpeg" alt="13 Seater">
+                </div>
+                <div class="fleet-details">
+                    <h3 class="en"><span>13</span> Seater Tempo Traveller</h3>
+                    <h3 class="mr"><span>१३</span> सीटर टेम्पो ट्रॅव्हलर</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-snowflake"></i> <span class="en">Powerful AC & Non-AC systems for perfect climate control.</span><span class="mr">उत्तम हवामानासाठी शक्तिशाली एसी (A/C) आणि नॉन-एसी सिस्टीम.</span></li>
+                        <li><i class="fas fa-suitcase"></i> <span class="en">Spacious layout with dedicated luggage space.</span><span class="mr">सामानासाठी खास जागेसह प्रशस्त लेआउट.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="en">Clean, well-maintained, and perfectly systematic travel experience.</span><span class="mr">स्वच्छ, व्यवस्थित ठेवलेली आणि उत्तम नियोजित प्रवास व्यवस्था.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 13 SEATER END -->
+
+            <!-- 16 SEATER URBANIA START -->
+            <div class="glass fleet-row" style="border-color: rgba(255, 69, 0, 0.3); box-shadow: 0 0 30px rgba(255, 69, 0, 0.1);">
+                <div class="fleet-image">
+                    <img src="sixteen.jpeg" alt="16 Seater Urbania">
+                </div>
+                <div class="fleet-details">
+                    <h3 class="en"><span>16</span> Seater Force Urbania <i class="fas fa-star" style="color:var(--primary); font-size:1.5rem;"></i></h3>
+                    <h3 class="mr"><span>१६</span> सीटर फोर्स अर्बनिया <i class="fas fa-star" style="color:var(--primary); font-size:1.5rem;"></i></h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-gem"></i> <span class="en">Ultra-premium luxury interiors for VIP and corporate travel.</span><span class="mr">व्हीआयपी (VIP) आणि कॉर्पोरेट प्रवासासाठी अतिशय प्रीमियम लक्झरी इंटिरियर.</span></li>
+                        <li><i class="fas fa-couch"></i> <span class="en">Extra-wide pushback reclining seats with superior suspension.</span><span class="mr">आरामदायी प्रवासासाठी उत्तम सस्पेंशन आणि रुंद पुशबॅक सीट्स.</span></li>
+                        <li><i class="fas fa-user-tie"></i> <span class="en">Chauffeur-driven by our top-rated professional drivers.</span><span class="mr">आमच्या सर्वोत्तम व्यावसायिक चालकांद्वारे चालवली जाणारी.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 16 SEATER URBANIA END -->
+
+            <!-- 17 & 20 SEATER START -->
+            <div class="glass fleet-row">
+                <div class="fleet-image">
+                    <img src="seventeen.jpeg" alt="17 and 20 Seater">
+                </div>
+                <div class="fleet-details">
+                    <h3 class="en"><span>17 & 20</span> Seater Options</h3>
+                    <h3 class="mr"><span>१७ आणि २०</span> सीटर पर्याय</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-snowflake"></i> <span class="en">AC & Non-AC variants available based on your preference.</span><span class="mr">तुमच्या पसंतीनुसार एसी (A/C) आणि नॉन-एसी (Non-A/C) पर्याय उपलब्ध.</span></li>
+                        <li><i class="fas fa-users"></i> <span class="en">Perfectly sized for mid-range family trips and friend groups.</span><span class="mr">कौटुंबिक सहली आणि मित्रांच्या ग्रुपसाठी अगदी योग्य आकार.</span></li>
+                        <li><i class="fas fa-check-circle"></i> <span class="en">Regularly sanitized and maintained to the highest standards.</span><span class="mr">नियमितपणे सॅनिटाइझ केलेले आणि उत्तम दर्जा राखलेले.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 17 & 20 SEATER END -->
+
+            <!-- 22, 26, & 30 SEATER START -->
+            <div class="glass fleet-row">
+                <div class="fleet-image">
+                    <img src="twenty2.jpeg" alt="22, 26, 30 Seater">
+                </div>
+                <div class="fleet-details">
+                    <h3 class="en"><span>22, 26 & 30</span> Seater Mini-Coaches</h3>
+                    <h3 class="mr"><span>२२, २६ आणि ३०</span> सीटर मिनी-बस</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-snowflake"></i> <span class="en">Dual AC vents for every passenger to ensure maximum comfort.</span><span class="mr">प्रत्येक प्रवाशासाठी ड्युअल एसी (A/C) व्हेंट्स.</span></li>
+                        <li><i class="fas fa-music"></i> <span class="en">Built-in entertainment and audio systems for long journeys.</span><span class="mr">लांबच्या प्रवासासाठी उत्तम म्युझिक सिस्टीम.</span></li>
+                        <li><i class="fas fa-user-tie"></i> <span class="en">Experienced drivers trained for hilly terrain and long routes.</span><span class="mr">डोंगराळ आणि लांबच्या रस्त्यांसाठी अनुभवी चालक.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 22, 26, & 30 SEATER END -->
+
+            <!-- 32, 35, 40, & 45 SEATER START -->
+            <div class="glass fleet-row">
+                <div class="fleet-image">
+                    <img src="forty.jpeg" alt="Large Buses">
+                </div>
+                <div class="fleet-details">
+                    <h3 class="en"><span>32 to 45</span> Seater Large Coaches</h3>
+                    <h3 class="mr"><span>३२ ते ४५</span> सीटर मोठ्या बसेस</h3>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-rings"></i> <span class="en">The ultimate choice for large weddings and corporate off-sites.</span><span class="mr">मोठे विवाहसोहळे आणि कॉर्पोरेट सहलींसाठी सर्वोत्तम पर्याय.</span></li>
+                        <li><i class="fas fa-couch"></i> <span class="en">Spacious, wide seating with ample aisle room.</span><span class="mr">प्रशस्त, रुंद सीट्स आणि चालण्यासाठी पुरेशी जागा.</span></li>
+                        <li><i class="fas fa-suitcase-rolling"></i> <span class="en">Massive undercarriage storage for all passenger luggage.</span><span class="mr">प्रवाशांच्या सामानासाठी प्रचंड जागा.</span></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- 32, 35, 40, & 45 SEATER END -->
+            
+        </div>
+    </section>
+
+    <!-- COMPREHENSIVE SERVICES & DESTINATIONS -->
+    <section class="section-padding" style="background-color: rgba(0,0,0,0.4); border-top: 1px solid var(--glass-border);">
+        <h2 class="section-title en" style="margin-bottom: 2rem;">Everything You Need. Everywhere You Go.</h2>
+        <h2 class="section-title mr" style="margin-bottom: 2rem;">तुमच्या सर्व गरजांसाठी. तुम्ही जाल तिथे.</h2>
+        
+        <div class="bottom-services-grid">
+            
+            <!-- Use Cases / Occasions -->
+            <div class="glass service-card">
+                <h3 class="en"><i class="fas fa-calendar-check"></i> Perfect For Every Occasion</h3>
+                <h3 class="mr"><i class="fas fa-calendar-check"></i> प्रत्येक प्रसंगासाठी उत्तम</h3>
+                <ul>
+                    <li><i class="fas fa-chevron-right"></i> <span class="en">Grand Marriages & Baraats</span><span class="mr">भव्य विवाहसोहळे आणि वऱ्हाड</span></li>
+                    <li><i class="fas fa-chevron-right"></i> <span class="en">Corporate Trips & Employee Transit</span><span class="mr">कॉर्पोरेट ट्रिप्स आणि कर्मचारी वाहतूक</span></li>
+                    <li><i class="fas fa-chevron-right"></i> <span class="en">Family Functions & Outings</span><span class="mr">कौटुंबिक कार्यक्रम आणि सहली</span></li>
+                    <li><i class="fas fa-chevron-right"></i> <span class="en">School & College Picnics</span><span class="mr">शाळा आणि कॉलेजच्या सहली</span></li>
+                    <li><i class="fas fa-chevron-right"></i> <span class="en">Pilgrimage (Darshan) Tours</span><span class="mr">तीर्थयात्रा (दर्शन) टूर</span></li>
+                </ul>
+            </div>
+
+            <!-- Destinations near Pune -->
+            <div class="glass service-card">
+                <h3 class="en"><i class="fas fa-map-marked-alt"></i> Popular Routes From Pune</h3>
+                <h3 class="mr"><i class="fas fa-map-marked-alt"></i> पुण्याहून जाणारे लोकप्रिय मार्ग</h3>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> <span class="en">Shirdi Darshan</span><span class="mr">शिर्डी दर्शन</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span class="en">Mahabaleshwar & Panchgani</span><span class="mr">महाबळेश्वर आणि पाचगणी</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span class="en">Lonavala & Khandala Weekend</span><span class="mr">लोणावळा आणि खंडाळा वीकेंड</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span class="en">Ashtavinayak Yatra</span><span class="mr">अष्टविनायक यात्रा</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span class="en">Bhimashankar & Trimbakeshwar</span><span class="mr">भीमाशंकर आणि त्र्यंबकेश्वर</span></li>
+                </ul>
+            </div>
+
+            <!-- Full Fleet Summary -->
+            <div class="glass service-card">
+                <h3 class="en"><i class="fas fa-clipboard-list"></i> Our Complete Capacity Range</h3>
+                <h3 class="mr"><i class="fas fa-clipboard-list"></i> आमची सर्व उपलब्ध वाहने</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> <span class="en">Compact: 9, 10, & 13 Seaters</span><span class="mr">लहान वाहने: ९, १०, आणि १३ सीटर</span></li>
+                    <li><i class="fas fa-check"></i> <span class="en">Premium: 16 Seater Force Urbania</span><span class="mr">प्रीमियम: १६ सीटर फोर्स अर्बनिया</span></li>
+                    <li><i class="fas fa-check"></i> <span class="en">Mid-Size: 17, 20, 22, & 26 Seaters</span><span class="mr">मध्यम वाहने: १७, २०, २२, आणि २६ सीटर</span></li>
+                    <li><i class="fas fa-check"></i> <span class="en">Large: 30, 32, & 35 Seater Coaches</span><span class="mr">मोठी वाहने: ३०, ३२, आणि ३५ सीटर बसेस</span></li>
+                    <li><i class="fas fa-check"></i> <span class="en">Mega: 40 & 45 Seater Buses</span><span class="mr">भव्य वाहने: ४० आणि ४५ सीटर बसेस</span></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 3rem 20px; border-top: 1px solid var(--glass-border);">
+        <h2 class="logo" style="font-size: 1.5rem; margin-bottom: 1rem;">Devraj Travels</h2>
+        <p class="en" style="color: var(--text-muted);">&copy; 2026 Devraj Travels. Designed for the Future.</p>
+        <p class="mr" style="color: var(--text-muted);">&copy; २०२६ देवराज ट्रॅव्हल्स. भविष्यासाठी डिझाइन केलेले.</p>
+    </footer>
+
+    <!-- Glowing WhatsApp Float -->
+    <a href="https://wa.me/919922744357?text=Hello%20Devraj%20Travels,%20I%20am%20looking%20for%20a%20vehicle%20booking." 
+       class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        let isEnglish = true;
+        function toggleLanguage() {
+            const enElements = document.querySelectorAll('.en');
+            const mrElements = document.querySelectorAll('.mr');
+            isEnglish = !isEnglish;
+            if (isEnglish) {
+                enElements.forEach(el => el.style.display = 'block');
+                mrElements.forEach(el => el.style.display = 'none');
+                document.querySelector('.logo .en').style.display = 'inline';
+                document.querySelector('.lang-btn .en').style.display = 'inline';
+            } else {
+                enElements.forEach(el => el.style.display = 'none');
+                mrElements.forEach(el => el.style.display = 'block');
+                document.querySelector('.logo .mr').style.display = 'inline';
+                document.querySelector('.lang-btn .mr').style.display = 'inline';
+            }
+        }
+    </script>
+</body>
+</html>
