@@ -453,7 +453,9 @@
 
     <!-- Initialize the Webchat towards a Cogngiy Endpoint via initWebchat() -->
     <script>
-    /*    var userData = {
+
+    
+const userData = {
     userId: "54321",
     data: {
         customerId: "12345",
@@ -462,19 +464,15 @@
         accountType: "Gold",
         supportLevel: "Premium"
     }
-};*/
+};
+
+        
       initWebchat(
         "https://endpoint-trial.cognigy.ai/efe5400a193b78889c681e29bb6ee264471c8a328cdc280c38f46244ede42c52",
           
  {
-    userId: "54321",
-   data: {
-        customerId: "12345",
-        customerName: "Rahul Zirpe",
-        email: "rahul.zirpe@nice.com",
-        accountType: "Gold",
-        supportLevel: "Premium"
-    }
+    userId: JSON.stringify(userData)
+  
  }
       );
     </script>
